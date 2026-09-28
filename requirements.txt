@@ -1,0 +1,7 @@
+# OnlineForge 运行 + 测试核心依赖（pinned）
+numpy>=1.24
+scipy>=1.10.0
+scikit-learn>=1.5.0
+pytest>=7
+# SOTA 可选后端（安装失败自动降级，系统仍可零下载运行）：
+# river>=0.15
