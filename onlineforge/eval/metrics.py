@@ -1,4 +1,5 @@
 """流式评测指标。"""
+
 from __future__ import annotations
 
 from collections import deque

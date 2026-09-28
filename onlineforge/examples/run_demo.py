@@ -3,6 +3,7 @@
 运行：
     python onlineforge/examples/run_demo.py
 """
+
 from __future__ import annotations
 
 import json

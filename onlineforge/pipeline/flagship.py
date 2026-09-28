@@ -7,6 +7,7 @@
     2) 重置最弱的 1/3 基学习器，使其在漂移后重新适应。
 从而兼顾稳定期的高精度与漂移期的快速恢复。
 """
+
 from __future__ import annotations
 
 import math
@@ -20,7 +21,9 @@ class DAERFlagship:
     name = "daer_flagship"
     backend = "mixed"
 
-    def __init__(self, learners: List, delta: float = 0.05, window: int = 200, temperature: float = 4.0) -> None:
+    def __init__(
+        self, learners: List, delta: float = 0.05, window: int = 200, temperature: float = 4.0
+    ) -> None:
         if not learners:
             raise ValueError("DAER requires at least one base learner")
         self.learners = list(learners)
@@ -38,14 +41,14 @@ class DAERFlagship:
         return max(votes, key=votes.get)
 
     def predict_one(self, x: List[float]) -> Any:
-        return self._vote([l.predict_one(x) for l in self.learners])
+        return self._vote([learner.predict_one(x) for learner in self.learners])
 
     def partial_fit_one(self, x: List[float], y: Any) -> None:
-        preds = [l.predict_one(x) for l in self.learners]
-        for i, l in enumerate(self.learners):
+        preds = [learner.predict_one(x) for learner in self.learners]
+        for i, learner in enumerate(self.learners):
             correct = 1 if preds[i] == y else 0
             self._roll[i].append(correct)
-            l.partial_fit_one(x, y)
+            learner.partial_fit_one(x, y)
         ens = self._vote(preds)
         gcorrect = 1 if ens == y else 0
         if self._global_adwin.update(gcorrect):
@@ -64,7 +67,7 @@ class DAERFlagship:
         k = max(1, len(self.learners) // 3)
         order = sorted(
             range(len(self.learners)),
-            key=lambda i: (sum(self._roll[i]) / max(1, len(self._roll[i]))),
+            key=lambda i: sum(self._roll[i]) / max(1, len(self._roll[i])),
         )
         for i in order[:k]:
             self.learners[i].reset()
@@ -72,13 +75,13 @@ class DAERFlagship:
 
     def classes(self) -> List[Any]:
         s = set()
-        for l in self.learners:
-            s.update(l.classes())
+        for learner in self.learners:
+            s.update(learner.classes())
         return list(s)
 
     def reset(self) -> None:
-        for l in self.learners:
-            l.reset()
+        for learner in self.learners:
+            learner.reset()
         self.weights = [1.0 / len(self.learners)] * len(self.learners)
         self._roll = [deque(maxlen=self.window) for _ in self.learners]
         self._global_adwin.reset()

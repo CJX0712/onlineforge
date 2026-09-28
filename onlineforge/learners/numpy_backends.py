@@ -4,6 +4,7 @@
 均支持逐步 partial_fit_one 与 predict_one/predict_proba_one。
 未见过任何样本时 predict 返回默认类 0，保证 test-then-train 范式首步不崩溃。
 """
+
 from __future__ import annotations
 
 import math

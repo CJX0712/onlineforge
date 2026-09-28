@@ -5,6 +5,7 @@
 
 均实现 StreamLearner 契约，便于在同一基准里公平比较。
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List

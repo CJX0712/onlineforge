@@ -48,6 +48,7 @@ cli → pipeline → {data, learners, drift, eval} → core
 class StreamLearner(Protocol):
     name: str
     backend: str
+
     def partial_fit_one(self, x: List[float], y) -> None: ...
     def predict_one(self, x: List[float]) -> Any: ...
     def predict_proba_one(self, x: List[float]) -> Dict[Any, float]: ...  # 行和=1

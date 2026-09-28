@@ -3,6 +3,7 @@
 sklearn 1.9 中 SGDClassifier / PassiveAggressiveClassifier 仍支持 partial_fit，
 是工业界主流的在线/增量学习器，作为 mid-tier 后端。
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List

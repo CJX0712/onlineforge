@@ -1,8 +1,9 @@
 """全局配置：支持 ENV_ONLINEFORGE_* 环境变量覆盖。"""
+
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Any, Dict
 
 
@@ -17,11 +18,11 @@ class Config:
     random_seed: int = 42
     drift_delta: float = 0.05
     warm_start: int = 100
-    window_size: int = 200          # 滑窗评测窗口
-    recovery_window: int = 400      # 漂移恢复判定窗口
-    adwin_max_len: int = 1000       # ADWIN 内部窗口上限
-    refit_every: int = 500          # PeriodicBatch 重拟合间隔
-    prefer_river: bool = True       # 探测到 river 时优先使用
+    window_size: int = 200  # 滑窗评测窗口
+    recovery_window: int = 400  # 漂移恢复判定窗口
+    adwin_max_len: int = 1000  # ADWIN 内部窗口上限
+    refit_every: int = 500  # PeriodicBatch 重拟合间隔
+    prefer_river: bool = True  # 探测到 river 时优先使用
 
     _ENV_PREFIX = "ONLINEFORGE_"
 

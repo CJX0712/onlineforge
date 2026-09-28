@@ -1,7 +1,8 @@
 """接口契约（Protocol）。调用方向单向无环：
 
-    cli -> pipeline -> {data, learners, drift, eval} -> core
+cli -> pipeline -> {data, learners, drift, eval} -> core
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List, Protocol, runtime_checkable
@@ -45,8 +46,7 @@ class DriftDetector(Protocol):
         """返回 True 表示本步检测到漂移。"""
         ...
 
-    def reset(self) -> None:
-        ...
+    def reset(self) -> None: ...
 
 
 @runtime_checkable
@@ -55,8 +55,6 @@ class StreamMetric(Protocol):
 
     name: str
 
-    def update(self, correct: int) -> None:
-        ...
+    def update(self, correct: int) -> None: ...
 
-    def get(self) -> float:
-        ...
+    def get(self) -> float: ...

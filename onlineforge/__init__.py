@@ -6,7 +6,9 @@
 
 作者：晨星 (CJX0712)
 """
-from . import core, data, learners, drift, eval as eval_mod, pipeline
+
+from . import core, data, drift, learners, pipeline
+from . import eval as eval_mod
 
 __version__ = "0.1.0"
 __author__ = "晨星"

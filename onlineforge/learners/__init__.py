@@ -1,12 +1,13 @@
 """学习器模块聚合 + 注册器。"""
+
 from __future__ import annotations
 
 from typing import List
 
 from ..core.config import Config
+from .batch_baseline import PeriodicBatch, StaticBaseline
 from .numpy_backends import OnlineGaussianNB, OnlinePA, OnlinePerceptron
 from .sklearn_backends import SklearnPA, SklearnSGD
-from .batch_baseline import PeriodicBatch, StaticBaseline
 
 try:
     from .river_backends import RIVER_AVAILABLE, build_river_learners
@@ -18,9 +19,16 @@ except Exception:  # pragma: no cover
 
 
 __all__ = [
-    "OnlinePerceptron", "OnlineGaussianNB", "OnlinePA",
-    "SklearnSGD", "SklearnPA", "StaticBaseline", "PeriodicBatch",
-    "RIVER_AVAILABLE", "build_river_learners", "build_learners",
+    "OnlinePerceptron",
+    "OnlineGaussianNB",
+    "OnlinePA",
+    "SklearnSGD",
+    "SklearnPA",
+    "StaticBaseline",
+    "PeriodicBatch",
+    "RIVER_AVAILABLE",
+    "build_river_learners",
+    "build_learners",
 ]
 
 

@@ -8,6 +8,7 @@ river 0.26 中：
 
 本模块在 river 不可用时整体跳过，不影响系统其它部分。
 """
+
 from __future__ import annotations
 
 from typing import Any, Dict, List
@@ -102,6 +103,8 @@ def build_river_learners() -> List[_RiverWrapper]:
     return [
         RiverHoeffdingTree(tree.HoeffdingTreeClassifier()),
         RiverHAT(tree.HoeffdingAdaptiveTreeClassifier()),
-        RiverLeveragingBag(ensemble.LeveragingBaggingClassifier(model=tree.HoeffdingTreeClassifier())),
+        RiverLeveragingBag(
+            ensemble.LeveragingBaggingClassifier(model=tree.HoeffdingTreeClassifier())
+        ),
         RiverLogReg(linear_model.LogisticRegression()),
     ]

@@ -3,6 +3,7 @@
 - ADWIN（纯 numpy 实现，离线兜底）：基于滑动窗口内两段子窗均值的 Hoeffding 界差异。
 - river 检测器（可选 SOTA）：ADWIN / DDM / KSWIN / PageHinkley。
 """
+
 from __future__ import annotations
 
 import math

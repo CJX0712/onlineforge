@@ -6,6 +6,7 @@
   自适应学习器能够恢复。
 - 同一 (seed, drift_type) 生成的流完全确定可复现。
 """
+
 from __future__ import annotations
 
 import math
@@ -95,7 +96,9 @@ def _lazy_load_sklearn(name: str):
     return X, y
 
 
-def from_sklearn(name: str, n_samples: int | None = None, seed: int = 0, shuffle: bool = True) -> List[StreamExample]:
+def from_sklearn(
+    name: str, n_samples: int | None = None, seed: int = 0, shuffle: bool = True
+) -> List[StreamExample]:
     """把 sklearn 数据集转成一条（无漂移）流。"""
     X, y = _lazy_load_sklearn(name)
     X = np.asarray(X, dtype=float)
@@ -111,7 +114,9 @@ def from_sklearn(name: str, n_samples: int | None = None, seed: int = 0, shuffle
     return out
 
 
-def iter_batches(stream: List[StreamExample], batch_size: int = 1) -> Iterator[List[StreamExample]]:
+def iter_batches(
+    stream: List[StreamExample], batch_size: int = 1
+) -> Iterator[List[StreamExample]]:
     """按批次产出（默认单样本在线）。"""
     for i in range(0, len(stream), batch_size):
         yield stream[i : i + batch_size]

@@ -1,5 +1,3 @@
-import numpy as np
-
 from onlineforge.data.generators import make_stream
 from onlineforge.learners.numpy_backends import OnlineGaussianNB, OnlinePA, OnlinePerceptron
 from onlineforge.learners.sklearn_backends import SklearnPA, SklearnSGD
